@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 credentials.py
+db_credentials.py
 *.idea
