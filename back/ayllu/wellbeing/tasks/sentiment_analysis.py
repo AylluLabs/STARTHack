@@ -1,10 +1,10 @@
 import boto3
 import json
-import credentials_refactor
+from wellbeing.credentials_refactor import return_credentials
 
 
 def analyze_sentiment(text, language="en"):
-    cred = credentials_refactor.return_credentials()
+    cred = return_credentials()
     comprehend_client = boto3.client(service_name='comprehend',
                                      aws_access_key_id=cred["AWSAccessKeyId"],
                                      aws_secret_access_key=cred["AWSSecretKey"],
