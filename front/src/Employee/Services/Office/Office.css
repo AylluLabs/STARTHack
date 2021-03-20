@@ -3,3 +3,9 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

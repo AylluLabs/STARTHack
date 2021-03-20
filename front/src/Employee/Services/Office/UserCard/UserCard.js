@@ -18,7 +18,6 @@ export default class UserCard extends Component {
               <Typography>
                   Orion Team
               </Typography>
-
           </CardContent>
         </Card>
 
