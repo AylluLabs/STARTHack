@@ -8,7 +8,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <div>
-        <AppBar position="static" className="navbar">
+        <AppBar elevation={0} position="static" className="navbar">
           <Toolbar>
             <Typography variant="h6">Ayllu</Typography>
             <Typography variant="h6" className="companyLogo">
