@@ -7,6 +7,7 @@ import RestaurantIcon from "@material-ui/icons/Restaurant";
 import MemoryIcon from "@material-ui/icons/Memory";
 import "./Employee.css";
 import NavButton from "./NavButton";
+import Office from './Services/Office/Office';
 
 export default class Employee extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ export default class Employee extends Component {
   renderMainView(selected) {
     switch (selected) {
       case "My office":
-        return <p>La office</p>;
+        return <Office/>;
       case "Well-being":
         return <p>La salud</p>;
       case "Food":
