@@ -27,8 +27,8 @@ ques_importance = {"I easily adapt to day-to-day changes of my life and manage m
                    }
 
 
-EWB45:
-EWB47:
+EWB45:asdasdasd
+EWB47:asdasdad
 EWB48:
 EWB41:
 EWB37: My workplace is very conducive. 0.778
