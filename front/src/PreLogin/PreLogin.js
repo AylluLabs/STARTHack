@@ -1,27 +1,22 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
-import Login from "../Login/Login";
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import UserCard from './UserCard';
+import {ReactComponent as Girl} from './illustrations/girl_circle.svg';
+import {ReactComponent as Man} from './illustrations/men_circle.svg';
+import './PreLogin.css';
 
 export default class PreLogin extends Component {
   render() {
     return (
-      <div>
-        <Button
-          component={Link}
-          to={"/company"}
-          variant="contained"
-          color="primary"
-        >
-          Company
-        </Button>
+      <div className='userCardContainer'>
+        <UserCard cardName="Company" cosoPath="/company">
+            <Girl width={200}/>
+        </UserCard>
 
-        <Button component={Link}
-          to={"/employee"}
-        variant="contained" 
-        color="primary">
-            Employee
-        </Button>
+        <UserCard cardName="Employee" cosoPath="/employee">
+            <Man width={200}/>
+        </UserCard>
+
       </div>
     );
   }
