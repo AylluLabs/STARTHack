@@ -22,3 +22,13 @@ class WellbeingQuestionAnswer(models.Model):
     wellbeing_question = models.ForeignKey(WellbeingQuestion, on_delete=models.CASCADE)
     wellbeing_poll = models.ForeignKey(WellbeingPollAnswer, on_delete=models.CASCADE)
     question_score = models.FloatField()
+
+
+class UserAudio(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    sentiment = models.CharField(max_length=50, blank=True, null=True)
+    mixed = models.FloatField(blank=True, null=True)
+    negative = models.FloatField(blank=True, null=True)
+    positive = models.FloatField(blank=True, null=True)
+    neutral = models.FloatField(blank=True, null=True)
+
