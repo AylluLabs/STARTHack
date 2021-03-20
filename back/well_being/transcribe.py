@@ -1,7 +1,8 @@
 import time
 import boto3
-import credentials
+import credentials_refactor
 import requests
+import json
 
 
 def transcribe_file(job_name, file_uri, transcribe_client):
@@ -22,9 +23,6 @@ def transcribe_file(job_name, file_uri, transcribe_client):
             if job_status == 'COMPLETED':
                 req = job['TranscriptionJob']['Transcript']['TranscriptFileUri']
                 return req
-                '''print(
-                    f"Download the transcript from\n"
-                    f"\t{job['TranscriptionJob']['Transcript']['TranscriptFileUri']}.")'''
             break
         else:
             print(f"Waiting for {job_name}. Current status is {job_status}.")
@@ -32,11 +30,11 @@ def transcribe_file(job_name, file_uri, transcribe_client):
 
 
 def transcribe():
-    transcribe_client = boto3.client('transcribe',
-                                     aws_access_key_id=credentials.AWSAccessKeyId,
-                                     aws_secret_access_key=credentials.AWSSecretKey,
+    cred = credentials_refactor.return_credentials()
+    transcribe_client = boto3.client(service_name='transcribe',
+                                     aws_access_key_id=cred["AWSAccessKeyId"],
+                                     aws_secret_access_key=cred["AWSSecretKey"],
                                      region_name='us-east-2'
-                                     # aws_session_token=SESSION_TOKEN
                                      )
     print("connected")
     file_uri = 'https://ayllu.s3.us-east-2.amazonaws.com/test.wav'
@@ -45,4 +43,6 @@ def transcribe():
 
 url = transcribe()
 response = requests.get(url, verify=True)
-print(response.text)
+transcript = json.loads(response.text)["results"]["transcripts"][0]["transcript"]
+print(transcript)
+
