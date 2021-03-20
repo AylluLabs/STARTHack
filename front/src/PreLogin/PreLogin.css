@@ -4,4 +4,10 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 10%;
+}
+
+.logo {
+    margin-top: 20px;
+    margin-left: 20px;
 }

@@ -1,0 +1,12 @@
+.navbar {
+  background: white !important;
+  color: black !important;
+}
+
+.companyLogo {
+  flex-grow: 1;
+}
+
+.navbarIcon {
+    color : #7C4EFF;
+}
