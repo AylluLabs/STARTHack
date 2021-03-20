@@ -8,6 +8,7 @@ import MemoryIcon from "@material-ui/icons/Memory";
 import "./Employee.css";
 import NavButton from "./NavButton";
 import Office from './Services/Office/Office';
+import ComingSoon from "./Services/ComingSoon/ComingSoon";
 
 export default class Employee extends Component {
   constructor(props) {
@@ -46,13 +47,13 @@ export default class Employee extends Component {
       case "My office":
         return <Office/>;
       case "Well-being":
-        return <p>La salud</p>;
+        return <ComingSoon/>;
       case "Food":
-        return <p>La food</p>;
+        return <ComingSoon/>;
       case "Hardware":
-        return <p>La hardware</p>;
+        return <ComingSoon/>;
     default:
-        return <p>Error</p>
+        return <ComingSoon/>;
     }
   }
 
@@ -64,6 +65,7 @@ export default class Employee extends Component {
         <div className="navigationIcons">
           {this.state.navButtons.map((navButton) => (
             <NavButton
+              key={navButton.name}
               buttonName={navButton.name}
               selected={navButton.selected}
               click={() => this.handleNavSelection(navButton.name)}
