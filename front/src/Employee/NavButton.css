@@ -1,0 +1,15 @@
+.navigationIcon {
+  border-radius: 30px !important;
+  width: 140px !important;
+  margin: 10px !important;
+}
+
+.unselected {
+  background: white !important;
+  color: #7c4eff !important;
+}
+
+.selected{
+  color: white !important;
+  background: #7c4eff !important; 
+}

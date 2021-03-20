@@ -1,6 +1,7 @@
 .navbar {
   background: white !important;
   color: black !important;
+  border-bottom: 1px solid #E5E5E5;
 }
 
 .companyLogo {
