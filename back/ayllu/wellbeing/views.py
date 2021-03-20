@@ -31,13 +31,14 @@ def processAnsweredPoll(request):
     scores = [i["qscore"] for i in resp["poll"]]
     id_questions = [i["idQuestion"] for i in resp["poll"]]
     weights = []
+    i = 0
     for key in id_questions:
         question = WellbeingQuestion.objects.get(pk=key)
+        weight = question.weight
         if question.weight_reversed:
-            weight = 11 - question.weight
-        else:
-            weight = question.weight
+            scores[i] = 11 - scores[i]
         weights.append(weight)
+        i += 1
     wellbeing_score = sum(np.array(weights) * np.array(scores)) / sum(weights)
     # TODO
     return HttpResponse(json.dumps({"wellbeing_score": wellbeing_score}))
