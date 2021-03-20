@@ -1,6 +1,6 @@
 import time
 import boto3
-import credentials_refactor
+from wellbeing.credentials_refactor import return_credentials
 import requests
 import json
 
@@ -29,20 +29,15 @@ def transcribe_file(job_name, file_uri, transcribe_client):
         time.sleep(10)
 
 
-def transcribe():
-    cred = credentials_refactor.return_credentials()
+def transcribe(file_url, id):
+    cred = return_credentials()
     transcribe_client = boto3.client(service_name='transcribe',
                                      aws_access_key_id=cred["AWSAccessKeyId"],
                                      aws_secret_access_key=cred["AWSSecretKey"],
                                      region_name='us-east-2'
                                      )
     print("connected")
-    file_uri = 'https://ayllu.s3.us-east-2.amazonaws.com/test.wav'
-    return transcribe_file('transcribe', file_uri, transcribe_client)
-
-
-url = transcribe()
-response = requests.get(url, verify=True)
-transcript = json.loads(response.text)["results"]["transcripts"][0]["transcript"]
-print(transcript)
-
+    uri = transcribe_file(f'transcribe-{id}', file_url, transcribe_client)
+    response = requests.get(uri, verify=True)
+    transcript = json.loads(response.text)["results"]["transcripts"][0]["transcript"]
+    return transcript
