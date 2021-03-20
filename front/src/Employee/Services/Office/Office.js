@@ -20,7 +20,7 @@ export default class Office extends Component {
       <div className="mainOffice">
         <UserCard />
         <Modal open={this.state.modalOpen} onClose={this.closeModal} className='modal'>
-            <WellbeingQuestions/>
+            <WellbeingQuestions closeModal={this.closeModal}/>
         </Modal>
       </div>
     );
