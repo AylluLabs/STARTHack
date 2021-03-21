@@ -5,6 +5,7 @@ import PreLogin from "./PreLogin/PreLogin.js";
 import { BrowserRouter as Router, Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import Login from './Login/Login';
 import Employee from "./Employee/Employee";
+import Company from "./Company/Company";
 
 function App() {
   return (
@@ -15,11 +16,11 @@ function App() {
           <PreLogin />
         </Route>
         <Route path="/company">
-          Company
+        <Company/>
         </Route>
         <Route path="/employee">
-          <Employee/>
-           {/* <Login /> */}
+          {/* <Employee/> */}
+           <Login />
         </Route>
       </Switch>
     </BrowserRouter>

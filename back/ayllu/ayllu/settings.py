@@ -25,6 +25,9 @@ SECRET_KEY = '6)*09n%^)#mltgkt#efg5ms6%9ah#o0q^4&0*0f6422dj1g@28'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 CORS_ALLOW_ALL_ORIGINS=True
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )
 
 ALLOWED_HOSTS = []
 

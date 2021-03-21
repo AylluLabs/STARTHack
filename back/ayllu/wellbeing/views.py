@@ -6,6 +6,7 @@ from django.forms.models import model_to_dict
 import boto3
 from .credentials_refactor import return_credentials
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from .tasks import transcribe, sentiment_analysis
 
 
@@ -80,3 +81,32 @@ def processAnsweredPoll(request):
     poll.save()
 
     return HttpResponse(json.dumps({"wellbeing_score": wellbeing_score}))
+
+def createUser(request):
+    body_unicode = request.body.decode('utf-8')
+    resp = json.loads(body_unicode)
+    print('resp', resp)
+
+    user = User.objects.create_user(username=resp['username'], password=resp['password'])
+    user.save()
+
+    return HttpResponse(json.dumps({'msg':'Succesful', 'username':resp['username']}))
+
+
+def authenticateUsr(request):
+    body_unicode = request.body.decode('utf-8')
+    resp = json.loads(body_unicode)
+    username = resp['username']
+    password = resp['password']
+    print('authenticating =>{}<= =>{}<='.format(username, password))
+    user = authenticate(username=username, password=password)
+    print(user)
+    if user is not None:
+        print('authenticated!!!')
+        # A backend authenticated the credentials
+        return HttpResponse(json.dumps({'auth':True}))
+ 
+    else:
+        print('pailas!')
+        #  No backend authenticated the credentials
+        return HttpResponse(json.dumps({'auth':False}))

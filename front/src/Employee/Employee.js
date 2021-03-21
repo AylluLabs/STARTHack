@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "./navbar/Navbar";
+import Navbar from "../navbar/Navbar";
 import { Button, Card, CardContent, IconButton } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import PersonIcon from "@material-ui/icons/Person";

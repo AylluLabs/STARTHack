@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import PersonIcon from "@material-ui/icons/Person";
-import {ReactComponent as Logo} from "../../resources/logos/logo.svg";
+import {ReactComponent as Logo} from "../resources/logos/logo.svg";
 import "./Navbar.css";
 
 export default class Navbar extends Component {

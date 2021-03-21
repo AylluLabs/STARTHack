@@ -7,4 +7,6 @@ urlpatterns = [
     path('sampleQuestions/', views.getSampleQuestions, name='getSampleQuestions'),
     path('audio/', views.processAudio, name='processAudio'),
     path('answeredPoll/', views.processAnsweredPoll, name='processAnsweredPoll'),
+    path('createUser/', views.createUser, name='createUser'),
+    path('authenticateUser/', views.authenticateUsr, name='authenticateUser'),
 ]
