@@ -25,7 +25,7 @@ export default class WellbeingQuestions extends Component {
   }
 
   getQuestionData() {
-    const url = "https://1df4b44c4f7a.ngrok.io:8000/wellbeing/sampleQuestions/";
+    const url = "https://3f05c5ca1147.ngrok.io/wellbeing/sampleQuestions/";
 
     fetch(url)
       .then((response) => response.json())
@@ -39,7 +39,7 @@ export default class WellbeingQuestions extends Component {
     let dataToSend = { username: this.props.username, poll: pollData };
     console.log("sending data:", dataToSend);
 
-    const url = "https://1df4b44c4f7a.ngrok.io:8000/wellbeing/answeredPoll/";
+    const url = "https://3f05c5ca1147.ngrok.io/wellbeing/answeredPoll/";
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
