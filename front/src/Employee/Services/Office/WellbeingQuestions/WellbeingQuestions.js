@@ -17,7 +17,7 @@ export default class WellbeingQuestions extends Component {
     super(props);
     this.answeredQuestions = [];
 
-    this.state = { currQuestion: 1, sliderVal: null , renderAudio: false};
+    this.state = { currQuestion: 1, sliderVal: null, renderAudio: false };
     this.nextQuestion = this.nextQuestion.bind(this);
     this.sliderChange = this.sliderChange.bind(this);
 
@@ -76,8 +76,8 @@ export default class WellbeingQuestions extends Component {
       //do something with the data and quit
       console.log(this.answeredQuestions);
       this.savePoll(this.answeredQuestions);
-      this.setState({renderAudio: true});
-    } 
+      this.setState({ renderAudio: true });
+    }
   }
 
   sliderChange(event, newValue) {
@@ -90,39 +90,41 @@ export default class WellbeingQuestions extends Component {
       return (
         <CardContent>
           <Typography>Question {this.state.currQuestion} of 3</Typography>
-          <Typography variant="h6">
+          <Typography variant="h5" className="questionText">
             {this.state.questions == null
               ? "Loading"
               : this.state.questions[this.state.currQuestion - 1].question_text}
           </Typography>
-          <Grid container spacing={2}>
-            <Grid item>
-              <Typography>Strongly Disagree</Typography>
-            </Grid>
-            <Grid item xs>
-              <Slider
-                defaultValue={50.0}
-                // value={value}
-                onChange={this.sliderChange}
-                // min={1.0}
-                // max={10.0}
-              />
-            </Grid>
-            <Grid item>
-              <Typography>Strongly Agree</Typography>
-            </Grid>
-          </Grid>
+          <div className='sliderContainer'>
+            {/* <Grid container spacing={2} >
+              <Grid item> */}
+                <Typography className='sliderText'>Strongly Disagree</Typography>
+              {/* </Grid>
+              <Grid item xs > */}
+                <Slider
+                className='slider'
+                  defaultValue={50.0}
+                  // value={value}
+                  onChange={this.sliderChange}
+                  // min={1.0}
+                  // max={10.0}
+                />
+              {/* </Grid>
+              <Grid item> */}
+                <Typography className='sliderText'>Strongly Agree</Typography>
+              {/* </Grid> */}
+            {/* </Grid> */}
+          </div>
 
-          <Button onClick={this.nextQuestion}>Next</Button>
+          <Button onClick={this.nextQuestion} variant='contained' className="sliderButton">Next</Button>
         </CardContent>
       );
     }
     return (
       <CardContent>
-        <RecordAudio closeModal={this.props.closeModal}/>
+        <RecordAudio closeModal={this.props.closeModal} />
       </CardContent>
     );
-
   }
 
   render() {

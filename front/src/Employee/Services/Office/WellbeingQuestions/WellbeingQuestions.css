@@ -1,10 +1,36 @@
 .modalCard {
   width: 40%;
-  height: 40%;
+  /* height: 40%; */
 }
 
 .waitingAnimation {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.questionText {
+  font-weight: bold !important;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.sliderContainer{ 
+  width : 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.slider{
+  width:60%;
+  color: #7C4EFF !important;
+}
+.sliderText {
+  text-align: center;
+}
+.sliderButton{
+  background: #7C4EFF !important;
+  color: white !important;
 }

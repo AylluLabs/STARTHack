@@ -1,0 +1,27 @@
+.timerCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timeTakenTypography {
+  text-align: center;
+  padding: 10px;
+}
+
+.timeTakenButton {
+  margin: 5px !important;
+}
+
+.reviewAudio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewAudioButton{
+    background: #7C4EFF !important;
+    color: white !important;
+    margin: 7px !important;
+  }

@@ -8,6 +8,7 @@ import {
   CardContent,
   Slider,
 } from "@material-ui/core";
+import "./RecordAudio.css";
 
 export default function RecordAudio(props) {
   const [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
@@ -81,23 +82,51 @@ export default function RecordAudio(props) {
   function renderContent() {
     if (!audioDone) {
       return (
-        <div>
-          {timeTaken}
-          <Button onClick={start} disabled={isRecording}>
-            Start
+        <div className="timerCard">
+          <Typography variant="h5" className="timeTakenTypography">
+            Please tell us how you're feeling in under 15 seconds.
+          </Typography>
+          <Typography variant="h6" className="timeTakenTypography">
+            {`Time left: ${15-timeTaken} seconds`}
+          </Typography>
+          <Button
+            className="timeTakenButton"
+            variant="contained"
+            color="primary"
+            onClick={start}
+            disabled={isRecording}
+          >
+            {audioURL === "" ? "Start" : "Restart"}
           </Button>
-          <Button onClick={stop} disabled={!isRecording}>
+          <Button
+            className="timeTakenButton"
+            variant="contained"
+            color="primary"
+            onClick={stop}
+            disabled={!isRecording}
+          >
             Stop
           </Button>
-          <Button onClick={done}>Done</Button>
+          <Button
+            className="timeTakenButton"
+            variant="contained"
+            color="primary"
+            onClick={done}
+            disabled={audioURL === ""}
+          >
+            Done
+          </Button>
         </div>
       );
     }
     return (
-      <div>
+      <div className='reviewAudio'>
+        <Typography variant='h6'>
+          Please review the audio
+        </Typography>
         <audio src={audioURL} controls />
-        <Button onClick={reset}>Reset</Button>
-        <Button onClick={upload}>Done</Button>
+        <Button variant='contained' color='primary' className='reviewAudioButton' onClick={reset}>Restart</Button>
+        <Button variant='contained' color='primary' className='reviewAudioButton' onClick={upload}>Done</Button>
       </div>
     );
   }
