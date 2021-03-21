@@ -20,7 +20,7 @@ export default class Company extends Component {
   }
 
   getData() {
-    const url = "http://localhost:8000/wellbeing/getUserResults/";
+    const url = "http://ec2-3-17-203-30.us-east-2.compute.amazonaws.com:8000/wellbeing/getUserResults/";
     fetch(url)
       .then((data) => data.json())
       .then((data) => {

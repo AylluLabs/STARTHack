@@ -52,7 +52,7 @@ export default function RecordAudio(props) {
   }
   function upload() {
     //upload data
-    const url = "http://127.0.0.1:8000/wellbeing/audio/";
+    const url = "http://ec2-3-17-203-30.us-east-2.compute.amazonaws.com:8000/wellbeing/audio/";
 
     setUploadingAudio(true);
 

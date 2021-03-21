@@ -25,7 +25,7 @@ export default class WellbeingQuestions extends Component {
   }
 
   getQuestionData() {
-    const url = "http://127.0.0.1:8000/wellbeing/sampleQuestions/";
+    const url = "http://ec2-3-17-203-30.us-east-2.compute.amazonaws.com:8000/wellbeing/sampleQuestions/";
 
     fetch(url)
       .then((response) => response.json())
@@ -39,7 +39,7 @@ export default class WellbeingQuestions extends Component {
     let dataToSend = { username: this.props.username, poll: pollData };
     console.log("sending data:", dataToSend);
 
-    const url = "http://127.0.0.1:8000/wellbeing/answeredPoll/";
+    const url = "http://ec2-3-17-203-30.us-east-2.compute.amazonaws.com:8000/wellbeing/answeredPoll/";
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

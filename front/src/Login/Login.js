@@ -56,7 +56,7 @@ export default function SignIn() {
   const [wrong, setwrong] = useState(false);
 
   function authenticate() {
-    const url = "http://localhost:8000/wellbeing/authenticateUser/";
+    const url = "http://ec2-3-17-203-30.us-east-2.compute.amazonaws.com:8000/wellbeing/authenticateUser/";
 
     fetch(url, {
       method: "POST",
@@ -82,7 +82,7 @@ export default function SignIn() {
   }
   function signUp() {
     console.log("signUp");
-    const url = "http://localhost:8000/wellbeing/createUser/";
+    const url = "http://ec2-3-17-203-30.us-east-2.compute.amazonaws.com:8000/wellbeing/createUser/";
     fetch(url, {
       method: "POST",
       body: JSON.stringify({
