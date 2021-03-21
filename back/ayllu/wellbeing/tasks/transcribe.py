@@ -9,7 +9,7 @@ def transcribe_file(job_name, file_uri, transcribe_client):
     transcribe_client.start_transcription_job(
         TranscriptionJobName=job_name,
         Media={'MediaFileUri': file_uri},
-        MediaFormat='wav',
+        MediaFormat='webm',
         LanguageCode='en-US'
     )
     print("start")
@@ -23,6 +23,9 @@ def transcribe_file(job_name, file_uri, transcribe_client):
             if job_status == 'COMPLETED':
                 req = job['TranscriptionJob']['Transcript']['TranscriptFileUri']
                 return req
+            if job_status == 'FAILED':
+                print('job failed')
+
             break
         else:
             print(f"Waiting for {job_name}. Current status is {job_status}.")
@@ -38,6 +41,7 @@ def transcribe(file_url, id):
                                      )
     print("connected")
     uri = transcribe_file(f'transcribe-{id}', file_url, transcribe_client)
+    print('uri', uri)
     response = requests.get(uri, verify=True)
     transcript = json.loads(response.text)["results"]["transcripts"][0]["transcript"]
     return transcript

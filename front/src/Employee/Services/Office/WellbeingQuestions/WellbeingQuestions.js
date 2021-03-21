@@ -119,7 +119,7 @@ export default class WellbeingQuestions extends Component {
     }
     return (
       <CardContent>
-        <RecordAudio/>
+        <RecordAudio closeModal={this.props.closeModal}/>
       </CardContent>
     );
 

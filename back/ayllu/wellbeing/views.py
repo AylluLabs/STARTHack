@@ -26,8 +26,11 @@ def getSampleQuestions(request):
 def processAudio(request):
     cred = return_credentials()
     if request.method == 'POST':
+        print('request', request)
         user_req = request.POST["user_id"]
+        print('user_req', user_req)
         file = request.FILES["file"]
+        print('file', file)
         bucket = "ayllu"
         user = User.objects.get(id=user_req)
         user_audio = UserAudio(user=user)
@@ -35,9 +38,11 @@ def processAudio(request):
         s3_client = boto3.client(service_name='s3',
                                  aws_access_key_id=cred["AWSAccessKeyId"],
                                  aws_secret_access_key=cred["AWSSecretKey"])
-        s3_client.upload_fileobj(file, bucket, str(user_audio.id)+".wav")
-        key = str(user_audio.id)+".wav"
+        s3_client.upload_fileobj(file, bucket, str(user_audio.id)+".webm")
+
+        key = str(user_audio.id)+".webm"
         url = f"https://{bucket}.s3.us-east-2.amazonaws.com/{key}"
+        print('url', url)
         transcript = transcribe.transcribe(file_url=url, id=str(user_audio.id))
         sentiment, scores = sentiment_analysis.analyze_sentiment(text=transcript, language="en")
         user_audio.sentiment = sentiment
@@ -51,7 +56,7 @@ def processAudio(request):
 
     else:
         pass
-    return HttpResponse('sendAudio')
+    return HttpResponse(json.dumps({'msg':'worked'}))
 
 
 def processAnsweredPoll(request):
