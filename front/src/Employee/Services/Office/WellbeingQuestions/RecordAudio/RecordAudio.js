@@ -52,7 +52,7 @@ export default function RecordAudio(props) {
   }
   function upload() {
     //upload data
-    const url = "https://7542a8507192.ngrok.io:8000/wellbeing/audio/";
+    const url = "https://1df4b44c4f7a.ngrok.io:8000/wellbeing/audio/";
 
     setUploadingAudio(true);
 

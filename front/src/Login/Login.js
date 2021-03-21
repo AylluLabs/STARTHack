@@ -56,7 +56,7 @@ export default function SignIn() {
   const [wrong, setwrong] = useState(false);
 
   function authenticate() {
-    const url = "https://7542a8507192.ngrok.io:8000/wellbeing/authenticateUser/";
+    const url = "https://1df4b44c4f7a.ngrok.io:8000/wellbeing/authenticateUser/";
 
     fetch(url, {
       method: "POST",
@@ -82,7 +82,7 @@ export default function SignIn() {
   }
   function signUp() {
     console.log("signUp");
-    const url = "https://7542a8507192.ngrok.io:8000/wellbeing/createUser/";
+    const url = "https://1df4b44c4f7a.ngrok.io:8000/wellbeing/createUser/";
     fetch(url, {
       method: "POST",
       body: JSON.stringify({

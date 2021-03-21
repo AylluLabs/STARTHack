@@ -20,7 +20,7 @@ export default class Company extends Component {
   }
 
   getData() {
-    const url = "https://7542a8507192.ngrok.io:8000/wellbeing/getUserResults/";
+    const url = "https://1df4b44c4f7a.ngrok.io:8000/wellbeing/getUserResults/";
     fetch(url)
       .then((data) => data.json())
       .then((data) => {
