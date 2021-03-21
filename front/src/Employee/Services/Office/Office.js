@@ -18,9 +18,9 @@ export default class Office extends Component {
   render() {
     return (
       <div className="mainOffice">
-        <UserCard />
+        <UserCard username={this.props.username}/>
         <Modal open={this.state.modalOpen} onClose={this.closeModal} className='modal'>
-            <WellbeingQuestions closeModal={this.closeModal}/>
+            <WellbeingQuestions username={this.props.username} closeModal={this.closeModal}/>
         </Modal>
       </div>
     );

@@ -9,4 +9,5 @@ urlpatterns = [
     path('answeredPoll/', views.processAnsweredPoll, name='processAnsweredPoll'),
     path('createUser/', views.createUser, name='createUser'),
     path('authenticateUser/', views.authenticateUsr, name='authenticateUser'),
+    path('getUserResults/', views.getUserResults, name='getUserResults'),
 ]

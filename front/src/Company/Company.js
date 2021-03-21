@@ -1,5 +1,6 @@
 import {
   Typography,
+  CircularProgress,
   TableContainer,
   TableRow,
   TableCell,
@@ -14,42 +15,63 @@ import Navbar from "../navbar/Navbar";
 export default class Company extends Component {
   constructor(props) {
     super(props);
+    this.state = {employees:null};
+    this.getData();
   }
 
-  getData(){
+  getData() {
+    const url = "http://localhost:8000/wellbeing/getUserResults/";
+    fetch(url)
+    .then(data =>data.json())
+    .then(data => {
+      console.log(data);
+      this.setState({employees:data});
+    })
+  }
 
+
+  renderContent() {
+    if(this.state.employees === null){
+      return <CircularProgress/>
+    }
+
+    return (
+      <TableContainer component={Paper}>
+          <Table  aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Employee</TableCell>
+                <TableCell align="right">Questionaire score</TableCell>
+                <TableCell align="right">Audio positivity</TableCell>
+                <TableCell align="right">Audio negativity</TableCell>
+                <TableCell align="right">Audio neutrality</TableCell>
+                <TableCell align="right">Audio mixedness</TableCell>
+                <TableCell align="right">Audio sentiment</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.state.employees.map((row) => (
+                <TableRow key={row.username}>
+                
+                  <TableCell align="right">{row.username}</TableCell>
+                  <TableCell align="right">{row.pollScore}</TableCell>
+                  <TableCell align="right">{row.audio.positivity}</TableCell>
+                  <TableCell align="right">{row.audio.negativity}</TableCell>
+                  <TableCell align="right">{row.audio.neutrality}</TableCell>
+                  <TableCell align="right">{row.audio.mixdness}</TableCell>
+                  <TableCell align="right">{row.audio.sentiment}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+    );
   }
   render() {
     return (
       <div>
         <Navbar />
-        <Typography variant="h3">Employees</Typography>
-        {/* <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer> */}
+        {this.renderContent()}
       </div>
     );
   }

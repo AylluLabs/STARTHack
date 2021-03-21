@@ -10,7 +10,7 @@ export default class UserCard extends Component {
           <img src={nathaImage} className='userCardImage'/>
           <CardContent>
               <Typography variant='h6'>
-                  Nathalia Cardona
+                  {this.props.username} 
               </Typography>
               <Typography>
                   Product Manager

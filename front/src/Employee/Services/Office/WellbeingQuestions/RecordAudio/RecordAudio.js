@@ -58,7 +58,7 @@ export default function RecordAudio(props) {
       .then((audioData) => {
         console.log("Audio data", audioData);
         formData.append("file", audioData);
-        formData.append("user_id", 1);
+        formData.append("username", props.username);
 
         console.log(formData);
 

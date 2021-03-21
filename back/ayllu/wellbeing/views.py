@@ -28,12 +28,12 @@ def processAudio(request):
     cred = return_credentials()
     if request.method == 'POST':
         print('request', request)
-        user_req = request.POST["user_id"]
+        user_req = request.POST["username"]
         print('user_req', user_req)
         file = request.FILES["file"]
         print('file', file)
         bucket = "ayllu"
-        user = User.objects.get(id=user_req)
+        user = User.objects.get(username=user_req)
         user_audio = UserAudio(user=user)
         user_audio.save()
         s3_client = boto3.client(service_name='s3',
@@ -110,3 +110,29 @@ def authenticateUsr(request):
         print('pailas!')
         #  No backend authenticated the credentials
         return HttpResponse(json.dumps({'auth':False}))
+
+def getUserResults(request):
+    
+    polls = WellbeingPollAnswer.objects.order_by('user__username', '-id').distinct('user__username')
+    audio = UserAudio.objects.order_by('user__username', '-id').distinct('user__username')
+    print(polls, audio)
+    ans = [{'username':x.user.username, 
+            'pollScore': x.global_score} for x in polls ]
+
+    for x in ans:
+        found = list(filter(lambda y: y.user.username==x['username'], audio))
+        if len(found)>0:
+            coso = found[0]
+            temp ={
+            'negativity': coso.negative,
+            'positivity':coso.positive,
+            'neutrality':coso.neutral,
+            'mixdness': coso.mixed,
+            'sentiment': coso.sentiment,
+            }
+            x['audio']=temp
+        else:
+            x['audio']=None
+
+
+    return HttpResponse(json.dumps(ans),content_type='application/json')

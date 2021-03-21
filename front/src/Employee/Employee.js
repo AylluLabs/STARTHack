@@ -45,7 +45,7 @@ export default class Employee extends Component {
   renderMainView(selected) {
     switch (selected) {
       case "My office":
-        return <Office/>;
+        return <Office username={this.props.username}/>;
       case "Well-being":
         return <ComingSoon/>;
       case "Food":

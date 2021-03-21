@@ -36,7 +36,7 @@ export default class WellbeingQuestions extends Component {
   }
 
   savePoll(pollData) {
-    let dataToSend = { username: "Alejandro Lozada", poll: pollData };
+    let dataToSend = { username: this.props.username, poll: pollData };
     console.log("sending data:", dataToSend);
 
     const url = "http://127.0.0.1:8000/wellbeing/answeredPoll/";
@@ -122,7 +122,7 @@ export default class WellbeingQuestions extends Component {
     }
     return (
       <CardContent>
-        <RecordAudio closeModal={this.props.closeModal} />
+        <RecordAudio username={this.props.username} closeModal={this.props.closeModal} />
       </CardContent>
     );
   }
