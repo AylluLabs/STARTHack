@@ -7,6 +7,7 @@ import {
   Button,
   CardContent,
   Slider,
+  CircularProgress,
 } from "@material-ui/core";
 import "./RecordAudio.css";
 
@@ -15,6 +16,7 @@ export default function RecordAudio(props) {
   const [timerActive, setTimerActive] = useState(false);
   const [timeTaken, setTimeTaken] = useState(0.0);
   const [audioDone, setAudioDone] = useState(false);
+  const [uploadingAudio, setUploadingAudio] = useState(false);
 
   useEffect(() => {
     let interval = null;
@@ -52,6 +54,8 @@ export default function RecordAudio(props) {
     //upload data
     const url = "http://127.0.0.1:8000/wellbeing/audio/";
 
+    setUploadingAudio(true);
+
     const formData = new FormData();
     fetch(audioURL)
       .then((r) => r.blob())
@@ -70,12 +74,12 @@ export default function RecordAudio(props) {
           .then((r) => r.json())
           .then((data) => {
             console.log("audio uploaded!!!", data);
+            setUploadingAudio(false);
+            props.closeModal();
           })
           .catch((error) => {
             console.error("Error:", error);
           });
-
-        props.closeModal();
       });
   }
 
@@ -87,7 +91,7 @@ export default function RecordAudio(props) {
             Please tell us how you're feeling in under 15 seconds.
           </Typography>
           <Typography variant="h6" className="timeTakenTypography">
-            {`Time left: ${15-timeTaken} seconds`}
+            {`Time left: ${15 - timeTaken} seconds`}
           </Typography>
           <Button
             className="timeTakenButton"
@@ -118,15 +122,34 @@ export default function RecordAudio(props) {
           </Button>
         </div>
       );
+    } else if (uploadingAudio) {
+      return (
+        <div>
+          <Typography>Processing audio...</Typography>
+          <CircularProgress />
+        </div>
+      );
     }
     return (
-      <div className='reviewAudio'>
-        <Typography variant='h6'>
-          Please review the audio
-        </Typography>
+      <div className="reviewAudio">
+        <Typography variant="h6">Please review the audio</Typography>
         <audio src={audioURL} controls />
-        <Button variant='contained' color='primary' className='reviewAudioButton' onClick={reset}>Restart</Button>
-        <Button variant='contained' color='primary' className='reviewAudioButton' onClick={upload}>Done</Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className="reviewAudioButton"
+          onClick={reset}
+        >
+          Restart
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className="reviewAudioButton"
+          onClick={upload}
+        >
+          Done
+        </Button>
       </div>
     );
   }

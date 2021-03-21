@@ -1,11 +1,29 @@
-.officeMain{
+.mainOffice{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.officeCard {
+    width :300px;
+    height: 300px;
+    margin : 40px;
+    padding: 25px;
+}
+
+.statusCard {
+    width :600px;
+    height: 300px;
+    margin : 40px;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }

@@ -1,0 +1,10 @@
+.userOfficeCard{
+    width:300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+    padding: 25px;
+}

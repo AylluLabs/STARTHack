@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { Card, CardContent, CardMedia, CatdContent, Typography } from "@material-ui/core";
 import nathaImage from '../../../../resources/images/Natha.jpeg';
-
-export default class UserCard extends Component {
+import './UserOfficeCard.css';
+export default class UserOfficeCard extends Component {
   render() {
     return (
-      <div>
-        <Card className='userCard'>
+        <Card className='userOfficeCard'>
           <img src={nathaImage} className='userCardImage'/>
           <CardContent>
               <Typography variant='h6'>
@@ -21,7 +20,6 @@ export default class UserCard extends Component {
           </CardContent>
         </Card>
 
-      </div>
     );
   }
 }
